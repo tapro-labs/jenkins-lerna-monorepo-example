@@ -1,0 +1,9 @@
+{
+  "name": "@tapro-labs/shared-components",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.ts",
+  "dependencies": {
+    "react": "^18.0.0"
+  }
+}

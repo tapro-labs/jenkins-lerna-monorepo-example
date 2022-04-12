@@ -1,0 +1,9 @@
+{
+  "name": "@tapro-labs/shared-configs",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "customize-cra": "^1.0.0",
+    "react-app-rewired": "^2.2.1"
+  }
+}
