@@ -62,15 +62,15 @@ podTemplate(name: 'monorepo-example-template') {
             def deployments = [
               "my-first-react-app": [
                 deploymentName: "first-react-app",
-                dockerImageName: "project-namespace/first-react-app",
+                dockerImageName: "tapro-labs/first-react-app",
               ],
               "my-second-react-app": [
                 deploymentName: "second-react-app",
-                dockerImageName: "project-namespace/second-react-app",
+                dockerImageName: "tapro-labs/second-react-app",
               ],
               "my-third-react-app": [
                 deploymentName: "third-react-app",
-                dockerImageName: "project-namespace/third-react-app",
+                dockerImageName: "tapro-labs/third-react-app",
               ]
             ]
 
@@ -84,7 +84,7 @@ podTemplate(name: 'monorepo-example-template') {
             stage("Push docker image") {
                 withCredentials([file(credentialsId: 'monorepo-example-gcloud-credential', variable: 'GC_KEY')]) {
                     sh 'gcloud auth activate-service-account --key-file=${GC_KEY}'
-                    sh 'gcloud config set project monorepo-example'
+                    sh 'gcloud config set project tapro-labs'
                     sh 'gcloud auth configure-docker'
 
                     docker.withRegistry(dockerRegistry) {
@@ -111,7 +111,7 @@ podTemplate(name: 'monorepo-example-template') {
                     def deploymentName = deployment.get("deploymentName")
                     def deploymentDockerImageName = deployment.get("dockerImageName")
 
-                    sh "kubectl set image deployment/project-${deploymentName} -n ${deploymentNamespace} ${deploymentName}=${dockerImagePrefix}/${deploymentDockerImageName}:${env.BUILD_TAG}"
+                    sh "kubectl set image deployment/tapro-labs-${deploymentName} -n ${deploymentNamespace} ${deploymentName}=${dockerImagePrefix}/${deploymentDockerImageName}:${env.BUILD_TAG}"
                   }
                 }
             }
