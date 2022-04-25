@@ -23,7 +23,7 @@ podTemplate(name: 'monorepo-example-template') {
             }
 
             packagesChanged = sh(
-              script: 'echo $(./node_modules/.bin/lerna ls --since "$(git rev-parse HEAD~1)") | xargs printf \'%s\\n\'',
+              script: './node_modules/.bin/lerna ls --since "$(git rev-parse HEAD~1)" | xargs printf \'%s\\n\'',
               returnStdout: true
              )
              .trim()
