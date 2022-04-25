@@ -48,8 +48,6 @@ podTemplate(name: 'monorepo-example-template') {
         }
 
         if (shouldExit) {
-          setBuildStatus("Build Successful!", "build", "success")
-
           return
         }
 
